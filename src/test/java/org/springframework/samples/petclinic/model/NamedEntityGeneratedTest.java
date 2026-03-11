@@ -12,6 +12,10 @@ public class NamedEntityGeneratedTest {
 		n.setName("Fido");
 		assertEquals("Fido", n.getName());
 		assertEquals("Fido", n.toString());
+
+		// null name fallback
+		n.setName(null);
+		assertEquals("<null>", n.toString());
 	}
 
 }

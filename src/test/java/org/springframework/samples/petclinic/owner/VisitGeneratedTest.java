@@ -18,4 +18,11 @@ public class VisitGeneratedTest {
 		assertEquals("Checkup", v.getDescription());
 	}
 
+	@Test
+	void testDefaultDateIsToday() {
+		Visit v = new Visit();
+		assertNotNull(v.getDate());
+		assertEquals(LocalDate.now(), v.getDate());
+	}
+
 }

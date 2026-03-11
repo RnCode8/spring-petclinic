@@ -12,6 +12,10 @@ public class PersonGeneratedTest {
 		p.setLastName("Doe");
 		assertEquals("John", p.getFirstName());
 		assertEquals("Doe", p.getLastName());
+		// BaseEntity behavior
+		assertTrue(p.isNew());
+		p.setId(123);
+		assertFalse(p.isNew());
 	}
 
 }

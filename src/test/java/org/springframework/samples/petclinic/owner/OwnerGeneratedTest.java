@@ -31,4 +31,27 @@ public class OwnerGeneratedTest {
 		assertTrue(p2.getVisits().contains(v));
 	}
 
+	@Test
+	void testGetPetIgnoreNewAndCaseInsensitive() {
+		Owner o = new Owner();
+		Pet p = new Pet();
+		p.setName("Bella");
+		o.addPet(p);
+		// name matching should be case-insensitive
+		assertEquals(p, o.getPet("bella"));
+		// if ignoreNew is true, new (unsaved) pets are ignored
+		assertNull(o.getPet("bella", true));
+	}
+
+	@Test
+	void testAddPetDoesNotAddWhenNotNew() {
+		Owner o = new Owner();
+		Pet existing = new Pet();
+		existing.setId(5);
+		existing.setName("Buddy");
+		// pet is not new, addPet should NOT add it
+		o.addPet(existing);
+		assertTrue(o.getPets().isEmpty());
+	}
+
 }

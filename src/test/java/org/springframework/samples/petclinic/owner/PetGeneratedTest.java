@@ -19,6 +19,12 @@ public class PetGeneratedTest {
 		t.setName("Dog");
 		p.setType(t);
 		assertEquals("Dog", p.getType().getName());
+
+		// visits collection behavior
+		assertTrue(p.getVisits().isEmpty());
+		Visit v = new Visit();
+		p.addVisit(v);
+		assertTrue(p.getVisits().contains(v));
 	}
 
 }

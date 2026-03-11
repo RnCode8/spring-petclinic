@@ -33,4 +33,20 @@ public class PetValidatorGeneratedTest {
 		assertFalse(v.supports(String.class));
 	}
 
+	@Test
+	void testValidPetHasNoErrors() {
+		Pet p = new Pet();
+		p.setName("Spot");
+		p.setBirthDate(LocalDate.of(2020, 5, 5));
+		PetType t = new PetType();
+		t.setName("Dog");
+		p.setType(t);
+		p.setId(null); // new pet
+
+		PetValidator v = new PetValidator();
+		Errors errors = new BeanPropertyBindingResult(p, "pet");
+		v.validate(p, errors);
+		assertFalse(errors.hasErrors());
+	}
+
 }

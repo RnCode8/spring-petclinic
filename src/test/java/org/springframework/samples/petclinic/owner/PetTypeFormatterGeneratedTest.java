@@ -34,4 +34,18 @@ public class PetTypeFormatterGeneratedTest {
 		assertEquals("Dog", res.getName());
 	}
 
+	@Test
+	void testParseThrowsWhenNotFound() {
+		PetTypeRepository repo = mock(PetTypeRepository.class);
+		when(repo.findPetTypes()).thenReturn(List.of());
+		PetTypeFormatter f = new PetTypeFormatter(repo);
+		try {
+			f.parse("Unknown", Locale.ENGLISH);
+			fail("Expected ParseException");
+		}
+		catch (ParseException e) {
+			assertTrue(e.getMessage().contains("type not found"));
+		}
+	}
+
 }
